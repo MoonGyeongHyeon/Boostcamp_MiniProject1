@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#ffffff"
+        app:cardCornerRadius="8dp"
+        android:layout_marginBottom="24dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:id="@+id/newspeedWriterImageView"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:scaleType="fitXY"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/newspeedWriterTextView"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/newspeedWriterImageView"
+                    android:layout_toRightOf="@id/newspeedWriterImageView"
+                    android:layout_toEndOf="@id/newspeedWriterImageView"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    />
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/good"
+                    android:scaleType="fitXY"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"/>
+
+                <TextView
+                    android:id="@+id/newspeedTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/newspeedWriterTextView"
+                    android:layout_alignLeft="@id/newspeedWriterTextView"
+                    android:layout_alignStart="@id/newspeedWriterTextView"
+                    />
+                
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:scaleType="fitXY"
+                    android:layout_toRightOf="@id/newspeedTimeTextView"
+                    android:layout_toEndOf="@id/newspeedTimeTextView"
+                    android:layout_alignTop="@id/newspeedTimeTextView"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/time"/>
+
+                <TextView
+                    android:id="@+id/newspeedContentsTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/newspeedWriterImageView"
+                    android:layout_alignLeft="@id/newspeedWriterImageView"
+                    android:layout_alignStart="@id/newspeedWriterImageView"
+                    android:layout_marginTop="8dp"
+                    android:textSize="18sp"
+                    />
+
+                <ImageView
+                    android:id="@+id/newspeedContentsImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/newspeedContentsTextView"/>
+
+                <ImageView
+                    android:id="@+id/newspeedExpressImageView"
+                    android:layout_width="64dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/express"
+                    android:layout_below="@id/newspeedContentsImageView"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/newspeedExpressCountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/newspeedExpressImageView"
+                    android:layout_toEndOf="@id/newspeedExpressImageView"
+                    android:layout_alignTop="@id/newspeedExpressImageView"
+                    />
+
+                <TextView
+                    android:id="@+id/newspeedHitsCountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/newspeedExpressImageView" />
+
+                <TextView
+                    android:id="@+id/newspeedSendCountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/newspeedHitsCountTextView"
+                    android:layout_toStartOf="@id/newspeedHitsCountTextView"
+                    android:layout_alignTop="@id/newspeedExpressImageView"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/newspeedCommentCountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/newspeedSendCountTextView"
+                    android:layout_toStartOf="@id/newspeedSendCountTextView"
+                    android:layout_alignTop="@id/newspeedExpressImageView"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@id/newspeedCommentCountTextView"
+                    android:weightSum="100"
+                    android:layout_marginTop="16dp">
+
+                    <RelativeLayout
+                        android:id="@+id/newspeedLikeLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="33">
+
+                        <ImageView
+                            android:id="@+id/newspeedGoLikeImageView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/like"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginStart="24dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/newspeedGoLikeImageView"
+                            android:layout_toEndOf="@id/newspeedGoLikeImageView"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:text="@string/newspeed_like" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/newspeedCommentLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="33">
+
+                        <ImageView
+                            android:id="@+id/newspeedGoCommentImageView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/comment"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginStart="24dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/newspeedGoCommentImageView"
+                            android:layout_toEndOf="@id/newspeedGoCommentImageView"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:text="@string/newspeed_comment" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/newspeedSendLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="34">
+
+                        <ImageView
+                            android:id="@+id/newspeedSendImageView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/send"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginStart="24dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/newspeedSendImageView"
+                            android:layout_toEndOf="@id/newspeedSendImageView"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:text="@string/newspeed_send" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FirstProject</string>
+    <string name="newspeed_like">좋아요</string>
+    <string name="newspeed_comment">댓글 달기</string>
+    <string name="newspeed_send">공유하기</string>
+    <string name="newspeed_header_send_message">경현님, 업데이트를 공유하시겠습니까?</string>
+</resources>
