@@ -9,10 +9,10 @@ import com.example.moon.firstproject.newspeed.NewspeedFragment;
 import com.example.moon.firstproject.notice.NoticeFragment;
 import com.example.moon.firstproject.friends.FriendsFragment;
 
-public class TabAdapter extends FragmentPagerAdapter {
+public class HomeViewPagerAdapter extends FragmentPagerAdapter {
     private int mPageCount;
 
-    public TabAdapter(FragmentManager fm, int pageCount) {
+    public HomeViewPagerAdapter(FragmentManager fm, int pageCount) {
         super(fm);
         mPageCount = pageCount;
     }

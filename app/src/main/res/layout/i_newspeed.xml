@@ -31,9 +31,9 @@
                     android:layout_alignTop="@id/newspeedWriterImageView"
                     android:layout_toRightOf="@id/newspeedWriterImageView"
                     android:layout_toEndOf="@id/newspeedWriterImageView"
+                    android:textStyle="bold"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    />
+                    android:layout_marginStart="8dp" />
 
                 <ImageView
                     android:layout_width="32dp"
@@ -49,8 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/newspeedWriterTextView"
                     android:layout_alignLeft="@id/newspeedWriterTextView"
-                    android:layout_alignStart="@id/newspeedWriterTextView"
-                    />
+                    android:layout_alignStart="@id/newspeedWriterTextView" />
                 
                 <ImageView
                     android:layout_width="16dp"
@@ -71,8 +70,7 @@
                     android:layout_alignLeft="@id/newspeedWriterImageView"
                     android:layout_alignStart="@id/newspeedWriterImageView"
                     android:layout_marginTop="8dp"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/newspeedContentsImageView"
@@ -97,8 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/newspeedExpressImageView"
                     android:layout_toEndOf="@id/newspeedExpressImageView"
-                    android:layout_alignTop="@id/newspeedExpressImageView"
-                    />
+                    android:layout_alignTop="@id/newspeedExpressImageView" />
 
                 <TextView
                     android:id="@+id/newspeedHitsCountTextView"
@@ -116,8 +113,7 @@
                     android:layout_toStartOf="@id/newspeedHitsCountTextView"
                     android:layout_alignTop="@id/newspeedExpressImageView"
                     android:layout_marginRight="8dp"
-                    android:layout_marginEnd="8dp"
-                    />
+                    android:layout_marginEnd="8dp" />
 
                 <TextView
                     android:id="@+id/newspeedCommentCountTextView"

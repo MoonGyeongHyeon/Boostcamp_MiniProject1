@@ -8,6 +8,7 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/homeTabLayout"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorHeight="0dp"/>

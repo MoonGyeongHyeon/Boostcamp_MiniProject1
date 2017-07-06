@@ -8,12 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moon.firstproject.R;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ContentRecyclerViewAdapter extends RecyclerView.Adapter<ContentRecyclerViewAdapter.ViewHolder> {
     private ArrayList<Content> mItemList;
@@ -33,16 +38,12 @@ public class ContentRecyclerViewAdapter extends RecyclerView.Adapter<ContentRecy
         if (viewType == TYPE_HEADER) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.i_newspeed_header, parent, false);
 
-            initImageButtons(v);
-
-            return new ViewHolder(v, viewType);
+            return new HeaderViewHolder(v, viewType);
         } else if (viewType == TYPE_ITEM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.i_newspeed, parent, false);
-            return new ViewHolder(v, viewType);
+            return new ItemViewHolder(v, viewType);
         }
         return null;
-//        View v = LayoutInflater.from(parent.getContext()).inflate(mItemLayout, parent, false);
-//        return new ViewHolder(v);
     }
 
     @Override
@@ -51,39 +52,7 @@ public class ContentRecyclerViewAdapter extends RecyclerView.Adapter<ContentRecy
         if (holder.mViewType == TYPE_HEADER) {
 
         } else if (holder.mViewType == TYPE_ITEM) {
-            final int pos = position-1;
-            Content content = mItemList.get(pos);
-
-            holder.mWriterImage.setImageResource(content.getmWriterImage());
-            holder.mWriter.setText(content.getmWriter() + "님이 방송을 종료했습니다.");
-            holder.mTime.setText(content.getmTime());
-            holder.mContents.setText(content.getmContents());
-            holder.mContentsImage.setImageResource(content.getmContentsImage());
-            holder.mExpressCount.setText(content.getmExpressCount());
-            holder.mCommentCount.setText("댓글 " + content.getmCommentCount());
-            holder.mSendCount.setText("공유 " + content.getmSendCount());
-            holder.mHitCount.setText("조회 " + content.getmHitCount());
-
-            holder.mLikeLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, "Like position " + String.valueOf(pos), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            holder.mCommentLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, "Comment position " + String.valueOf(pos), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            holder.mSendLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, "Send position " + String.valueOf(pos), Toast.LENGTH_SHORT).show();
-                }
-            });
+            ((ItemViewHolder) holder).setItem(position-1);
         }
     }
 
@@ -107,71 +76,93 @@ public class ContentRecyclerViewAdapter extends RecyclerView.Adapter<ContentRecy
         return mItemList.size() + 1;
     }
 
-    private void initImageButtons(View v) {
-        ImageButton cameraImageButton = (ImageButton) v.findViewById(R.id.newspeedCameraImageButton);
-        cameraImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Camera!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        ImageButton myStoryImageButton = (ImageButton) v.findViewById(R.id.newspeedMyStoryImageButton);
-        myStoryImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "My Story!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        ImageButton profileImageButton = (ImageButton) v.findViewById(R.id.newspeedProfileImageButton);
-        profileImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Profile!!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     class ViewHolder extends RecyclerView.ViewHolder {
-        private int mViewType;
-        private ImageView mWriterImage;
-        private TextView mWriter;
-        private TextView mTime;
-        private TextView mContents;
-        private ImageView mContentsImage;
-        private TextView mExpressCount;
-        private TextView mCommentCount;
-        private TextView mSendCount;
-        private TextView mHitCount;
-        private View mLikeLayout;
-        private View mCommentLayout;
-        private View mSendLayout;
-
+        int mViewType;
 
         public ViewHolder(View itemView, int viewType) {
             super(itemView);
-
             mViewType = viewType;
+        }
+    }
 
-            Log.d("Test", "ViewHolder viewType: " + String.valueOf(viewType));
+    class HeaderViewHolder extends ViewHolder {
+        public HeaderViewHolder(View itemView, int viewType) {
+            super(itemView, viewType);
+            ButterKnife.bind(this, itemView);
+        }
 
-            if (viewType == TYPE_HEADER) {
-            } else if (viewType == TYPE_ITEM) {
-                mWriterImage = (ImageView) itemView.findViewById(R.id.newspeedWriterImageView);
-                mWriter = (TextView) itemView.findViewById(R.id.newspeedWriterTextView);
-                mTime = (TextView) itemView.findViewById(R.id.newspeedTimeTextView);
-                mContents = (TextView) itemView.findViewById(R.id.newspeedContentsTextView);
-                mContentsImage = (ImageView) itemView.findViewById(R.id.newspeedContentsImageView);
-                mExpressCount = (TextView) itemView.findViewById(R.id.newspeedExpressCountTextView);
-                mCommentCount = (TextView) itemView.findViewById(R.id.newspeedCommentCountTextView);
-                mSendCount = (TextView) itemView.findViewById(R.id.newspeedSendCountTextView);
-                mHitCount = (TextView) itemView.findViewById(R.id.newspeedHitsCountTextView);
+        @OnClick(R.id.newspeedCameraImageButton)
+        void onCameraClickEvent() {
+            Toast.makeText(mContext, "Camera!!", Toast.LENGTH_SHORT).show();
+        }
+        @OnClick(R.id.newspeedMyStoryImageButton)
+        void onStoryClickEvent() {
+            Toast.makeText(mContext, "My Story!!", Toast.LENGTH_SHORT).show();
+        }
+        @OnClick(R.id.newspeedProfileImageButton)
+        void onProfileClickEvent() {
+            Toast.makeText(mContext, "Profile!!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-                mLikeLayout = itemView.findViewById(R.id.newspeedLikeLayout);
-                mCommentLayout = itemView.findViewById(R.id.newspeedCommentLayout);
-                mSendLayout = itemView.findViewById(R.id.newspeedSendLayout);
-            }
+    class ItemViewHolder extends ViewHolder {
+        @BindView(R.id.newspeedWriterImageView)
+        ImageView mWriterImage;
+        @BindView(R.id.newspeedWriterTextView)
+        TextView mWriter;
+        @BindView(R.id.newspeedTimeTextView)
+        TextView mTime;
+        @BindView(R.id.newspeedContentsTextView)
+        TextView mContents;
+        @BindView(R.id.newspeedContentsImageView)
+        ImageView mContentsImage;
+        @BindView(R.id.newspeedExpressCountTextView)
+        TextView mExpressCount;
+        @BindView(R.id.newspeedCommentCountTextView)
+        TextView mCommentCount;
+        @BindView(R.id.newspeedSendCountTextView)
+        TextView mSendCount;
+        @BindView(R.id.newspeedHitsCountTextView)
+        TextView mHitCount;
+        @BindView(R.id.newspeedLikeLayout)
+        RelativeLayout mLikeLayout;
+        @BindView(R.id.newspeedCommentLayout)
+        RelativeLayout mCommentLayout;
+        @BindView(R.id.newspeedSendLayout)
+        RelativeLayout mSendLayout;
+        private int position;
+
+        public ItemViewHolder(View itemView, int viewType) {
+            super(itemView, viewType);
+            ButterKnife.bind(this, itemView);
+        }
+
+        public void setItem(int pos) {
+            position = pos;
+            Content content = mItemList.get(position);
+
+            mWriterImage.setImageResource(content.getmWriterImage());
+            mWriter.setText(content.getmWriter() + "님이 방송을 종료했습니다.");
+            mTime.setText(content.getmTime());
+            mContents.setText(content.getmContents());
+            mContentsImage.setImageResource(content.getmContentsImage());
+            mExpressCount.setText(content.getmExpressCount());
+            mCommentCount.setText("댓글 " + content.getmCommentCount());
+            mSendCount.setText("공유 " + content.getmSendCount());
+            mHitCount.setText("조회 " + content.getmHitCount());
+        }
+
+        @OnClick(R.id.newspeedLikeLayout)
+        void onLikeEvent(){
+            Toast.makeText(mContext, "Like position " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+        }
+        @OnClick(R.id.newspeedCommentLayout)
+        void onCommentEvent(){
+            Toast.makeText(mContext, "Comment position " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+        }
+        @OnClick(R.id.newspeedSendLayout)
+        void onSendEvent(){
+            Toast.makeText(mContext, "Send position " + String.valueOf(position), Toast.LENGTH_SHORT).show();
         }
     }
 

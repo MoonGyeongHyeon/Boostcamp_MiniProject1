@@ -11,18 +11,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
+    @BindView(R.id.mainToolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.homeTabLayout)
+    TabLayout mTabLayout;
+    @BindView(R.id.homeViewPager)
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.mainToolbar);
+        ButterKnife.bind(this);
+
+        initToolbar();
+        initTabLayout();
+    }
+
+    private void initToolbar() {
         setSupportActionBar(mToolbar);
 
-//        mToolbar.setTitle("TestTest");
         mToolbar.setNavigationIcon(R.drawable.direct);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,30 +44,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getSupportActionBar().setTitle("test");
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.homeTabLayout);
-
-        initTabLayout(tabLayout);
+        getSupportActionBar().setTitle("MiniProject1");
     }
 
-    void initTabLayout(TabLayout tabLayout) {
-        tabLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+    private void initTabLayout() {
+        ButterKnife.bind(this);
 
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.icon1_selector));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.icon2_selector));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.icon3_selector));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.icon4_selector));
+        mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.icon1_selector));
+        mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.icon2_selector));
+        mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.icon3_selector));
+        mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.icon4_selector));
 
-        TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.homeViewPager);
-        viewPager.setAdapter(tabAdapter);
+        HomeViewPagerAdapter homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
+        mViewPager.setAdapter(homeViewPagerAdapter);
 
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+                mViewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override

@@ -14,8 +14,14 @@ import com.example.moon.firstproject.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NewspeedFragment extends Fragment {
-    private ArrayList<Content> mItemlist;
+    @BindView(R.id.newspeedRecyclerView)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.newspeedSwipeLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     public static NewspeedFragment newInstance() {
         return new NewspeedFragment();
@@ -26,28 +32,28 @@ public class NewspeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.f_newspeed, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.newspeedRecyclerView);
+        ButterKnife.bind(this, layout);
+
         LinearLayoutManager manager = new LinearLayoutManager(layout.getContext());
-        recyclerView.setLayoutManager(manager);
+        mRecyclerView.setLayoutManager(manager);
 
-        initItem();
+        ArrayList<Content> itemList = getItemList();
 
-        ContentRecyclerViewAdapter adapter = new ContentRecyclerViewAdapter(mItemlist, getContext());
-        recyclerView.setAdapter(adapter);
+        ContentRecyclerViewAdapter adapter = new ContentRecyclerViewAdapter(itemList, getContext());
+        mRecyclerView.setAdapter(adapter);
 
-        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) layout.findViewById(R.id.newspeedSwipeLayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
         return layout;
     }
 
-    void initItem() {
-        mItemlist = new ArrayList<>();
+    private ArrayList<Content> getItemList() {
+        ArrayList<Content> itemList = new ArrayList<>();
 
         Content content = new Content();
         content.setmWriterImage(R.drawable.video_mug);
@@ -59,7 +65,7 @@ public class NewspeedFragment extends Fragment {
         content.setmCommentCount("9,689개");
         content.setmSendCount("397회");
         content.setmHitCount("32만회");
-        mItemlist.add(content);
+        itemList.add(content);
 
         content = new Content();
         content.setmWriterImage(R.drawable.youtube);
@@ -71,7 +77,7 @@ public class NewspeedFragment extends Fragment {
         content.setmCommentCount("14,221개");
         content.setmSendCount("831회");
         content.setmHitCount("87만회");
-        mItemlist.add(content);
+        itemList.add(content);
 
         content = new Content();
         content.setmWriterImage(R.drawable.sbs);
@@ -83,6 +89,8 @@ public class NewspeedFragment extends Fragment {
         content.setmCommentCount("5,219개");
         content.setmSendCount("184회");
         content.setmHitCount("75만회");
-        mItemlist.add(content);
+        itemList.add(content);
+
+        return itemList;
     }
 }
