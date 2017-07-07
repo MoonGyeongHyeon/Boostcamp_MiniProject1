@@ -145,7 +145,11 @@ public class ContentRecyclerViewAdapter extends RecyclerView.Adapter<ContentRecy
             mWriter.setText(content.getmWriter() + "님이 방송을 종료했습니다.");
             mTime.setText(content.getmTime());
             mContents.setText(content.getmContents());
-            mContentsImage.setImageResource(content.getmContentsImage());
+            if (content.getmContentsImage() != 0) {
+                mContentsImage.setImageResource(content.getmContentsImage());
+            } else {
+                mContentsImage.setVisibility(View.GONE);
+            }
             mExpressCount.setText(content.getmExpressCount());
             mCommentCount.setText("댓글 " + content.getmCommentCount());
             mSendCount.setText("공유 " + content.getmSendCount());

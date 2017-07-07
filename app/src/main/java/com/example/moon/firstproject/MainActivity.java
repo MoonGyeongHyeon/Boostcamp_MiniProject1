@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initTabLayout() {
-        ButterKnife.bind(this);
-
         mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.icon1_selector));
         mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.icon2_selector));
         mTabLayout.addTab(mTabLayout.newTab().setIcon(R.drawable.icon3_selector));
