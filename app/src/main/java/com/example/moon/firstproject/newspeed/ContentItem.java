@@ -1,6 +1,6 @@
 package com.example.moon.firstproject.newspeed;
 
-public class Content {
+public class ContentItem extends NewspeedItem {
     private int mWriterImage;
     private String mWriter;
     private String mTime;
@@ -11,75 +11,79 @@ public class Content {
     private String mSendCount;
     private String mHitCount;
 
-    public int getmWriterImage() {
+    public ContentItem(int mViewType) {
+        super(mViewType);
+    }
+
+    public int getWriterImage() {
         return mWriterImage;
     }
 
-    public void setmWriterImage(int mWriterImage) {
+    public void setWriterImage(int mWriterImage) {
         this.mWriterImage = mWriterImage;
     }
 
-    public String getmWriter() {
+    public String getWriter() {
         return mWriter;
     }
 
-    public void setmWriter(String mWriter) {
+    public void setWriter(String mWriter) {
         this.mWriter = mWriter;
     }
 
-    public String getmTime() {
+    public String getTime() {
         return mTime;
     }
 
-    public void setmTime(String mTime) {
+    public void setTime(String mTime) {
         this.mTime = mTime;
     }
 
-    public String getmContents() {
+    public String getContents() {
         return mContents;
     }
 
-    public void setmContents(String mContents) {
+    public void setContents(String mContents) {
         this.mContents = mContents;
     }
 
-    public int getmContentsImage() {
+    public int getContentsImage() {
         return mContentsImage;
     }
 
-    public void setmContentsImage(int mContentsImage) {
+    public void setContentsImage(int mContentsImage) {
         this.mContentsImage = mContentsImage;
     }
 
-    public String getmExpressCount() {
+    public String getExpressCount() {
         return mExpressCount;
     }
 
-    public void setmExpressCount(String mExpressCount) {
+    public void setExpressCount(String mExpressCount) {
         this.mExpressCount = mExpressCount;
     }
 
-    public String getmCommentCount() {
+    public String getCommentCount() {
         return mCommentCount;
     }
 
-    public void setmCommentCount(String mCommentCount) {
+    public void setCommentCount(String mCommentCount) {
         this.mCommentCount = mCommentCount;
     }
 
-    public String getmSendCount() {
+    public String getSendCount() {
         return mSendCount;
     }
 
-    public void setmSendCount(String mSendCount) {
+    public void setSendCount(String mSendCount) {
         this.mSendCount = mSendCount;
     }
 
-    public String getmHitCount() {
+    public String getHitCount() {
         return mHitCount;
     }
 
-    public void setmHitCount(String mHitCount) {
+    public void setHitCount(String mHitCount) {
         this.mHitCount = mHitCount;
     }
 }

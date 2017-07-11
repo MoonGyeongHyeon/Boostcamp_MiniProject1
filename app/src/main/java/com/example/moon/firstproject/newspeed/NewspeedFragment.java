@@ -30,16 +30,19 @@ public class NewspeedFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.f_newspeed, container, false);
+        return inflater.inflate(R.layout.f_newspeed, container, false);
+    }
 
-        ButterKnife.bind(this, layout);
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        ButterKnife.bind(this, view);
 
-        LinearLayoutManager manager = new LinearLayoutManager(layout.getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
         mRecyclerView.setLayoutManager(manager);
 
-        ArrayList<Content> itemList = getItemList();
+        ArrayList<NewspeedItem> itemList = getItemList();
 
-        ContentRecyclerViewAdapter adapter = new ContentRecyclerViewAdapter(itemList, getContext());
+        NewspeedRecyclerViewAdapter adapter = new NewspeedRecyclerViewAdapter(itemList, getContext());
         mRecyclerView.setAdapter(adapter);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -48,47 +51,48 @@ public class NewspeedFragment extends Fragment {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-
-        return layout;
     }
 
-    private ArrayList<Content> getItemList() {
-        ArrayList<Content> itemList = new ArrayList<>();
+    private ArrayList<NewspeedItem> getItemList() {
+        ArrayList<NewspeedItem> itemList = new ArrayList<>();
 
-        Content content = new Content();
-        content.setmWriterImage(R.drawable.video_mug);
-        content.setmWriter("비디오머그 - VIDEO MUG");
-        content.setmTime("2시간전");
-        content.setmContents("[비디오 머그 라이브] 최순실 딸 정유라 강제 소환\n\n-> 고화질 감상 https://youtu.be/XjLDue4kpRk");
-        content.setmContentsImage(R.drawable.video_mug_content);
-        content.setmExpressCount("1만");
-        content.setmCommentCount("9,689개");
-        content.setmSendCount("397회");
-        content.setmHitCount("32만회");
+        HeaderItem header = new HeaderItem(NewspeedRecyclerViewAdapter.TYPE_HEADER);
+        itemList.add(header);
+
+        ContentItem content = new ContentItem(NewspeedRecyclerViewAdapter.TYPE_CONTENT);
+        content.setWriterImage(R.drawable.video_mug);
+        content.setWriter("비디오머그 - VIDEO MUG");
+        content.setTime("2시간전");
+        content.setContents("[비디오 머그 라이브] 최순실 딸 정유라 강제 소환\n\n-> 고화질 감상 https://youtu.be/XjLDue4kpRk");
+        content.setContentsImage(R.drawable.video_mug_content);
+        content.setExpressCount("1만");
+        content.setCommentCount("9,689개");
+        content.setSendCount("397회");
+        content.setHitCount("32만회");
         itemList.add(content);
 
-        content = new Content();
-        content.setmWriterImage(R.drawable.youtube);
-        content.setmWriter("유튜브 - YOUTUBE");
-        content.setmTime("3시간전");
-        content.setmContents("[YOUTUBE] 【분량체크!】 박준형 - 라스 나와서 졸아도 이정도ㅋㅋ 얼마나 뺌뺌 터졌게요?");
-        content.setmContentsImage(R.drawable.youtube_content);
-        content.setmExpressCount("3만");
-        content.setmCommentCount("14,221개");
-        content.setmSendCount("831회");
-        content.setmHitCount("87만회");
+        content = new ContentItem(NewspeedRecyclerViewAdapter.TYPE_CONTENT);
+        content.setWriterImage(R.drawable.youtube);
+        content.setWriter("유튜브 - YOUTUBE");
+        content.setTime("3시간전");
+        content.setContents("[YOUTUBE] 【분량체크!】 박준형 - 라스 나와서 졸아도 이정도ㅋㅋ 얼마나 뺌뺌 터졌게요?");
+        content.setContentsImage(R.drawable.youtube_content);
+        content.setExpressCount("3만");
+        content.setCommentCount("14,221개");
+        content.setSendCount("831회");
+        content.setHitCount("87만회");
         itemList.add(content);
 
-        content = new Content();
-        content.setmWriterImage(R.drawable.sbs);
-        content.setmWriter("스브스타 - SBS");
-        content.setmTime("6시간전");
-        content.setmContents("[스브스타] 송중기-송혜교 결혼이 중견기업 합병이라 하는 이유");
-        content.setmContentsImage(R.drawable.sbs_content);
-        content.setmExpressCount("8천");
-        content.setmCommentCount("5,219개");
-        content.setmSendCount("184회");
-        content.setmHitCount("75만회");
+        content = new ContentItem(NewspeedRecyclerViewAdapter.TYPE_CONTENT);
+        content.setWriterImage(R.drawable.sbs);
+        content.setWriter("스브스타 - SBS");
+        content.setTime("6시간전");
+        content.setContents("[스브스타] 송중기-송혜교 결혼이 중견기업 합병이라 하는 이유");
+        content.setContentsImage(R.drawable.sbs_content);
+        content.setExpressCount("8천");
+        content.setCommentCount("5,219개");
+        content.setSendCount("184회");
+        content.setHitCount("75만회");
         itemList.add(content);
 
         return itemList;

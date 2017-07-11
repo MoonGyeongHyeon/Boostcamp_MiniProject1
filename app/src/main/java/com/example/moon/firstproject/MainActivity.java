@@ -1,6 +1,5 @@
 package com.example.moon.firstproject;
 
-import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.mainToolbar)
@@ -21,6 +22,17 @@ public class MainActivity extends AppCompatActivity {
     TabLayout mTabLayout;
     @BindView(R.id.homeViewPager)
     ViewPager mViewPager;
+
+    @OnClick(R.id.menuDirectImageButton)
+    void onMenuDirectEvent() {
+        Toast.makeText(this, "Direct!", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.menuPostImageButton)
+    void onMenuPostEvent() {
+        Toast.makeText(this, "Post!", Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToolbar() {
         setSupportActionBar(mToolbar);
-
-        mToolbar.setNavigationIcon(R.drawable.direct);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "direct!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         getSupportActionBar().setTitle("MiniProject1");
     }
@@ -69,25 +73,5 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {}
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_search:
-                Toast.makeText(MainActivity.this, "Search!", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.menu_post:
-                Toast.makeText(MainActivity.this, "Post!", Toast.LENGTH_SHORT).show();
-                break;
-        }
-
-        return true;
     }
 }
